@@ -1,0 +1,15 @@
+username: sayan
+
+ircnick: sayan
+
+all_users:
+- user: sachowdh
+  homedir: /home/sachowdh
+- user: root
+  homedir: /root
+
+ansible_ssh_user: root
+
+shell: /usr/bin/zsh
+
+
