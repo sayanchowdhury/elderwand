@@ -1,0 +1,7 @@
+---
+
+- name: System Configuration (packages, etc)
+  hosts: devbox
+
+  roles:
+  - development

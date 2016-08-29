@@ -1,9 +1,9 @@
 [local]
-devbox          ansible_ssh_host=localhost
+devbox          ansible_connection=local    ansible_host=localhost
 
 [remote]
-do              ansible_ssh_host=128.199.106.74
+do              ansible_host=128.199.106.74
 
 [master:children]
-devbox
-do
+local
+remote
