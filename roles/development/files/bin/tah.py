@@ -60,9 +60,9 @@ class TahShell(cmd.Cmd):
         if arg == 'list':
             if self.projects:
                 for cnt, project in enumerate(self.projects):
-                    print '{}. {}'.format(cnt, project)
+                    print('{}. {}'.format(cnt, project))
             else:
-                print 'No project yet'
+                print('No project yet')
 
             return
 
