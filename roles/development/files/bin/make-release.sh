@@ -140,6 +140,7 @@ if yesno "Is this correct?"; then
         if [ -f Makefile ]; then
             make upload
         else
+            python setup.py sdist
             twine upload dist/* --sign --sign-with gpg2 --identity sayanchowdhury@fedoraproject.org
         fi
     fi
