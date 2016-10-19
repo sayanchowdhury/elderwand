@@ -13,18 +13,21 @@ class TahShell(cmd.Cmd):
     prompt = "(duh) "
 
     def __init__(self, *args, **kwargs):
-        super(TahShell, self).__init__(*args, **kwargs)
+        cmd.Cmd.__init__(self, *args, **kwargs)
         self.status = 'status'
 
         path = [os.path.expanduser('~'), self.status,
                 '%s.yml' % self._get_next_monday().strftime("%B-%m-%d").lower()]
         self.file = '/'.join(path)
 
+        if not os.path.exists(self.file):
+            file(self.file, 'w').close()
+
         content = ''
         with open(self.file, 'r') as fobj:
             content = fobj.read()
 
-        self._d = yaml.load(content)
+        self._d = yaml.load(content) or []
 
         self.projects = self._get_projects()
 
@@ -48,6 +51,21 @@ class TahShell(cmd.Cmd):
             fobj.write(content)
 
     def do_p(self, arg):
+        """
+        Changes to the given project
+
+        Usage: p <project_name> -- Sets context to the project, creates if not present
+               p list -- Returns the list of project
+        """
+        if arg == 'list':
+            if self.projects:
+                for cnt, project in enumerate(self.projects):
+                    print '{}. {}'.format(cnt, project)
+            else:
+                print 'No project yet'
+
+            return
+
         if arg not in self.projects:
             self.projects.add(arg)
             self._cp = {
@@ -55,16 +73,25 @@ class TahShell(cmd.Cmd):
                 'tasks': [],
                 'project': arg
             }
+            self._d.append(self._cp)
+            self._save()
+            return
 
         for item in self._d:
             if item['project'] == arg:
                 self._cp = item
-                self.task = self._cp['tasks'][0]
+                self.task = self._cp['tasks']
                 return
 
-
     def do_n(self, arg):
-        if not arg:
+        if not arg and not len(self._cp['tasks']):
+            print('No tasks yet. Create one using `n <task>`')
+            return
+
+        if arg == 'list':
+            if not len(self._cp['tasks']):
+                print('No tasks yet. Create one using `n <task>`')
+                return
             for count, item in enumerate(self._cp['tasks']):
                 print(count, item['task'])
             ip = int(input('Select task: '))
@@ -81,9 +108,11 @@ class TahShell(cmd.Cmd):
             'annotations': []
         }]
         self._cp['tasks'].extend(self.task)
+        self._save()
 
     def do_a(self, arg):
-        self.task[0]['annotations'].append(arg)
+        self.task['annotations'].append(arg)
+        self._save()
 
     def do_s(self, arg):
         self._save()
@@ -92,13 +121,10 @@ class TahShell(cmd.Cmd):
         self._save()
         sys.exit()
 
-    def do_ipdb(self, arg):
-        from ipdb import set_trace;set_trace()
-
     def cmdloop(self):
         try:
             cmd.Cmd.cmdloop(self)
-        except KeyboardInterrupt as e:
+        except KeyboardInterrupt:
             self._save()
             self.cmdloop()
 
