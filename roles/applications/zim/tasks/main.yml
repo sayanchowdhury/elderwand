@@ -1,0 +1,19 @@
+- name: Install the Zim pacakge and related plugins
+  dnf:
+    name: "{{ item }}"
+    state: present
+  become: true
+  become_method: sudo
+  with_items:
+  - Zim
+  tags:
+  - application
+  - zim
+
+- name: Change the Default template to jump paths
+  synchronize:
+    src: Default.txt
+    dest: ~/.local/share/zim/templates/wiki/Default.txt
+  tags:
+  - application
+  - zim
