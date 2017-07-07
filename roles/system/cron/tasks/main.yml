@@ -1,0 +1,28 @@
+---
+
+- cron:
+    name: "Cron to sync the Primary emails every 2 hours using mbsync"
+    hour: "*/2"
+    job: "mbsync gmail-sayanchowdhury-primary"
+  tags:
+  - cron
+  - primary
+  - email
+
+- cron:
+    name: "Cron to sync the RH emails every 2 hours using mbsync"
+    hour: "*/2"
+    job: "mbsync gmail-sachowdh-redhat"
+  tags:
+  - cron
+  - redhat
+  - email
+
+- cron:
+    name: "Cron to sync the Mailing List emails every 2 hours using mbsync"
+    hour: "*/2"
+    job: "mbsync gmail-yudocaa-mailinglist"
+  tags:
+  - cron
+  - mailinglist
+  - email
