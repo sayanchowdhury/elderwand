@@ -1,0 +1,37 @@
+---
+- name: Install vim
+  sudo: yes
+  dnf:
+    name: {{ name }}
+    state: installed
+  with_items:
+    - vim
+    - git
+  tags:
+    - vim
+
+- name: Copy the vimrc file to home directory
+  copy:
+    src: vimrc
+    dest: {{ ansible_env.HOME }}/.vimrc
+  tags:
+    - vim
+
+- name: Create the .vim directory in home
+  command: mkdir -p {{ ansible_env.HOME }}/.vim/bundle
+  tags:
+    - vim
+    - vundle
+
+- name: Install Vundle ( the VIM package manager )
+  git:
+    repo: https://github.com/gmarik/Vundle.vim.git 
+    dest: {{ ansible_env.HOME }}/.vim/bundle/Vundle.vim
+  tags:
+    - vim
+    - vundle
+
+- name: Install the Vundle Plugins
+  command: vim +PluginsInstall +qall
+    - vim
+    - vundle
