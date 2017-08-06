@@ -1,0 +1,8 @@
+---
+
+- name: Setup the remote system
+  hosts: tldr-yudocaa
+
+  roles:
+    - base
+    - applications/vim

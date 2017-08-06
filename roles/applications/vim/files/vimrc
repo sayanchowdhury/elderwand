@@ -23,7 +23,6 @@ Plugin 'wincent/Command-T'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'wakatime/vim-wakatime'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 Plugin 'scrooloose/nerdcommenter'
