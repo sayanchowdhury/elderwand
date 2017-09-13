@@ -2,7 +2,16 @@
 
 - name: Setup the remote system
   hosts: tldr-yudocaa
+  vars:
+    tldr_yudocaa_hostname: 'tldr.yudocaa.in'
+    tldr_yudocaa_basedir: '/srv/tldr-yudocaa/'
+    g_user: 'fedora'
+
+  handlers:
+    - name: Register the restart handlers
+      include: "{{ playbook_dir }}/handlers/restart_services.yml"
 
   roles:
     - base
     - applications/vim
+    - hosts/tldr
