@@ -1,0 +1,21 @@
+- name: irc | install the common packages
+  dnf:
+      state: present
+      name: "{{ item }}"
+  with_items:
+  - weechat
+  - tmux
+  - nginx
+
+- name: irc | copy weechat config with rsync
+  synchronize:
+      src: weechat/
+      dest: "/home/{{ username }}/.weechat/"
+  tags: irc
+
+- name: Copy weechat config template directly
+  template:
+      src: irc.conf
+      dest: "/home/{{ username }}/.weechat/irc.conf"
+      owner: "{{ username }}"
+  tags: irc
