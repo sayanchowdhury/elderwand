@@ -1,12 +1,16 @@
 [local]
 devbox          ansible_connection=local    ansible_host=localhost
+vagrant         ansible_ssh_host=192.168.111.222
 
 [remote]
 do              ansible_host=128.199.106.74
 
-[tldr-yudocaa]
-tldr-yudocaa    ansible_host=ec2-34-229-239-203.compute-1.amazonaws.com ansible_ssh_private_key_file=~/.ssh/matrix.pem ansible_user=fedora
+[scaleway1]
+212.47.247.76
 
 [master:children]
 local
 remote
+
+[kube-cluster:children]
+scaleway1

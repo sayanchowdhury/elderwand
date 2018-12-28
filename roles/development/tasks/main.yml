@@ -1,30 +1,26 @@
 - name: Install the required packages
   dnf:
-    name: "{{ item }}"
+    name: [
+      'git',
+      'gitflow',
+      'hub',
+      'python-virtualenvwrapper',
+      'python-pip',
+      'gcc',
+      'gcc-c++',
+      'libcurl-devel',
+      'libffi-devel',
+      'zeromq-devel',
+      'fedpkg',
+      'fedora-packager',
+      'redhat-rpm-config',
+      'libxslt-devel',
+      'htop',
+      'vagrant',
+      'vagrant-libvirt'
+    ]
     state: present
   become: true
   become_method: sudo
-  with_items:
-  - git
-  - gitflow
-  - hub
-  - python-virtualenvwrapper
-  - python-pip
-  - gcc
-  - gcc-c++
-  - libcurl-devel
-  - libffi-devel
-  - zeromq-devel
-  - fedpkg
-  - fedora-packager
-  - redhat-rpm-config
-  - libxslt-devel # For building lxml in venv
-  tags:
-  - development
-
-- name: Synchromize scripts to /usr/local/bin
-  synchronize:
-    src: bin/
-    dest: /usr/local/bin/
   tags:
   - development

@@ -1,8 +1,17 @@
 ---
 
 - name: System Configuration (packages, etc)
-  hosts: devbox
+  hosts: all
 
   roles:
-  - applications/zim
   - development
+  tags:
+  - development
+
+- name: Instal Applications on this Laptop along with configurations
+  hosts: devbox
+  roles:
+  - applications/zim
+  - applications/zsh
+  tags:
+  - zim

@@ -10,6 +10,14 @@
   - application
   - zim
 
+- name: Create the template directory
+  file:
+    path: ~/.local/share/zim/templates/wiki
+    state: directory
+  tags:
+  - application
+  - zim
+
 - name: Change the Default template to jump paths
   synchronize:
     src: Default.txt
