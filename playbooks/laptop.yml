@@ -11,7 +11,9 @@
 - name: Instal Applications on this Laptop along with configurations
   hosts: devbox
   roles:
-  - applications/zim
+  - applications/git
+  - applications/neovim
   - applications/zsh
+  - applications/zim
   tags:
-  - zim
+  - application

@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
 	end
 
 	# Comment this line if you would like to disable the automatic update during provisioning
-	# config.vm.provision "shell", inline: "sudo dnf upgrade -y"
+	config.vm.provision "shell", inline: "sudo dnf upgrade -y"
 
   config.vm.provision "shell", inline: "sudo dnf -y install python2-dnf libselinux-python"
   config.vm.provision "ansible" do |ansible|

@@ -1,0 +1,11 @@
+---
+- name: Install git
+  sudo: yes
+  dnf:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+  - git
+  tags:
+  - application
+  - git
