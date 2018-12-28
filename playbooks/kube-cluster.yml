@@ -1,0 +1,14 @@
+---
+
+- host: kube-cluster
+  gather_facts: yes
+  become: yes
+  roles:
+    - docker
+
+- host: kube-cluster master
+  gather_facts: yes
+  become: yes
+  roles:
+    - kubernetes/master
+    - cni
