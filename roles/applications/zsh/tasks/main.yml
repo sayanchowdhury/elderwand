@@ -40,6 +40,7 @@
     - { src: 'path.zsh', dest: '~/.zsh/path.zsh' }
     - { src: 'window.zsh', dest: '~/.zsh/window.zsh' }
     - { src: 'config.zsh', dest: '~/.zsh/config.zsh' }
+    - { src: 'p10k.zsh', dest: '~/.p10k.zsh' }
 
 - name: Set zsh as the default shell
   become: yes
