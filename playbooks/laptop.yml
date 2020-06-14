@@ -1,15 +1,15 @@
 ---
 
 - name: System Configuration (packages, etc)
-  hosts: all
+  hosts: laptop
 
   roles:
   - development
   tags:
   - development
 
-- name: Instal Applications on this Laptop along with configurations
-  hosts: devbox
+- name: Install Applications on this Laptop along with configurations
+  hosts: laptop
   roles:
   - applications/git
   - applications/neovim

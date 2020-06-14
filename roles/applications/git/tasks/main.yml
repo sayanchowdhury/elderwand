@@ -1,6 +1,7 @@
 ---
+
 - name: Install git
-  sudo: yes
+  become: yes
   dnf:
     name: "{{ item }}"
     state: installed

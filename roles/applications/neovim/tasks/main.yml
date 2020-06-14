@@ -1,6 +1,6 @@
 ---
 - name: install neovim
-  sudo: yes
+  become: yes
   dnf:
     name: "{{ item }}"
     state: installed

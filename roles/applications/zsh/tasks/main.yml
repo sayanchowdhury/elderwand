@@ -1,6 +1,6 @@
 ---
 - name: Install zsh
-  sudo: yes
+  become: yes
   dnf:
     name: "{{ item }}"
     state: installed
@@ -14,29 +14,24 @@
 
 - name: Backing up existing ~/.zshrc
   shell: if [ -f ~/.zshrc ]; then mv ~/.zshrc{,.orig}; fi
-  when: install | success
-  sudo: no
+  when: install
 
 - name: Install oh-my-zsh
-  sudo: no
   git:
     repo: https://github.com/robbyrussell/oh-my-zsh
     dest: ~/.zsh
 
 - name: Install zsh-autosuggestions
-  sudo: no
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: ~/.zsh/zsh-autosuggestions
 
 - name: Creating a new ~/.zshrc
-  sudo: no
   copy:
     src: zshrc
     dest: ~/.zshrc
 
 - name: Copy other .zsh files
-  sudo: no
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -47,8 +42,8 @@
     - { src: 'config.zsh', dest: '~/.zsh/config.zsh' }
 
 - name: Set zsh as the default shell
-  sudo: yes
-  shell: "chsh -s $(which zsh) vagrant"
+  become: yes
+  shell: "chsh -s $(which zsh) sayan"
   tags:
     - zsh
 

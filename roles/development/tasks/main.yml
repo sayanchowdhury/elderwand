@@ -2,8 +2,6 @@
   dnf:
     name: [
       'git',
-      'gitflow',
-      'hub',
       'python-virtualenvwrapper',
       'python-pip',
       'gcc',

@@ -1,16 +1,2 @@
-[local]
-devbox          ansible_connection=local    ansible_host=localhost
-vagrant         ansible_ssh_host=192.168.111.222
-
-[remote]
-do              ansible_host=128.199.106.74
-
-[scaleway1]
-212.47.247.76
-
-[master:children]
-local
-remote
-
-[kube-cluster:children]
-scaleway1
+[laptop]
+devbox ansible_connection=local
