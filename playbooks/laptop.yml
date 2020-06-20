@@ -1,12 +1,27 @@
 ---
 
+- name: laptop | install base packages
+  hosts: laptop
+  roles:
+  - base
+  tags:
+  - base
+
 - name: System Configuration (packages, etc)
   hosts: laptop
-
   roles:
-  - development
+  - development/base
   tags:
+  - base
   - development
+
+- name: laptop | setup the dotfiles
+  hosts: laptop
+  roles:
+  - development/dotfiles
+  tags:
+  - developement
+
 
 - name: Install Applications on this Laptop along with configurations
   hosts: laptop

@@ -6,10 +6,22 @@
     - base
     - dnf
 
-- name: Install the default base packages
-  sudo: yes
+- name: Install the required packages
   dnf:
-    name: "{{ item }}"
-    state: "installed"
-  with_items:
-    - libselinux-python
+    name: [
+      'gcc',
+      'gcc-c++',
+      'git',
+      'libcurl-devel',
+      'libffi-devel',
+      'libselinux-python',
+      'python-pip',
+      'python-virtualenvwrapper',
+      'stow'
+    ]
+    state: present
+  become: true
+  become_method: sudo
+  tags:
+  - base
+  - install

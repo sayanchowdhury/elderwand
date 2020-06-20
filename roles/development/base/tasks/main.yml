@@ -1,13 +1,6 @@
-- name: Install the required packages
+- name: development/base | Install the required packages
   dnf:
     name: [
-      'git',
-      'python-virtualenvwrapper',
-      'python-pip',
-      'gcc',
-      'gcc-c++',
-      'libcurl-devel',
-      'libffi-devel',
       'zeromq-devel',
       'fedpkg',
       'fedora-packager',
@@ -17,7 +10,7 @@
       'vagrant',
       'vagrant-libvirt'
     ]
-    state: present
+    state: installed
   become: true
   become_method: sudo
   tags:

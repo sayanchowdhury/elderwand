@@ -1,0 +1,12 @@
+- name: irc | install the common packages
+  dnf:
+      state: present
+      name: "{{ item }}"
+  with_items:
+  - weechat
+  - tmux
+  - nginx
+  tags:
+  - weechat
+  - irc
+  - install

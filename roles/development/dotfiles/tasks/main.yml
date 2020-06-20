@@ -1,0 +1,6 @@
+- name:  development/dotfiles | setup the dotfiles directory
+  git:
+    repo: git@github.com:sayanchowdhury/dotfiles.git
+    dest: {{ ansible.HOME }}/dotfiles
+  tags:
+  - development

@@ -1,12 +1,20 @@
 ---
 
-- name: Install git
-  become: yes
+- name: git | install git
   dnf:
-    name: "{{ item }}"
+    name: [
+      'git'
+    ]
     state: installed
-  with_items:
+  become: yes
+  become_method: sudo
+  tags:
+  - application
   - git
+
+- name: git | stow git
+  command: stow git
+    chdir: {{ ansible.HOME }}/dotfiles
   tags:
   - application
   - git

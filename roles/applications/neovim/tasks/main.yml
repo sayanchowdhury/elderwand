@@ -1,5 +1,5 @@
 ---
-- name: install neovim
+- name: neovim | install neovim
   become: yes
   dnf:
     name: "{{ item }}"
@@ -10,30 +10,11 @@
   - application
   - nvim
 
-- name: create the neovim config directory
-  file:
-    path: "{{ ansible_env.HOME }}/.config/nvim"
-    state: directory
-  tags:
-  - application
-  - nvim
+- name: neovim | stow neovim
+  command: stow neovim
+    chdir: "{{ ansible_env.HOME }}/dotfiles"
 
-- name: copy the vimrc file to home directory
-  copy:
-    src: init.vim
-    dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
-  tags:
-  - application
-  - nvim
-
-- name: install vim-plug, neovim plugin manager
-  shell: "curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  tags:
-  - application
-  - nvim
-
-- name: install the neovim plugins
+- name: neovim | install the neovim plugins
   command: nvim +PlugInstall +qall
   tags:
   - application
