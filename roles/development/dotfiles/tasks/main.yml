@@ -1,6 +1,15 @@
-- name:  development/dotfiles | setup the dotfiles directory
+- name:  development/dotfiles | setup the dotfiles directory | sayan
   git:
     repo: git@github.com:sayanchowdhury/dotfiles.git
     dest: {{ ansible.HOME }}/dotfiles
   tags:
   - development
+  - sayan
+  
+- name:  development/dotfiles | setup the dotfiles directory | shilpi
+  git:
+    repo: git@github.com:sbiswas94/dotfiles.git
+    dest: {{ ansible.HOME }}/dotfiles
+  tags:
+  - development
+  - shilpi
