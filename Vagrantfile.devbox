@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "fedora/29-cloud-base"
+  config.vm.box = "fedora/37-beta-cloud-base"
   config.vm.network :private_network, ip: "192.168.111.222"
 
   if Vagrant.has_plugin?("vagrant-hostmanager")
