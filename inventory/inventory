@@ -1,2 +1,5 @@
 [laptop]
 devbox ansible_connection=local
+
+[valentine]
+jill ansible_connection=local
