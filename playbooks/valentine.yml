@@ -1,0 +1,34 @@
+---
+
+- name: valentine | install base packages
+  hosts: valentine
+  roles:
+  - base
+  tags:
+  - base
+
+- name: System Configuration (packages, etc)
+  hosts: valentine
+  roles:
+  - development/base
+  tags:
+  - base
+  - development
+
+- name: valentine | setup the dotfiles
+  hosts: valentine
+  roles:
+  - development/dotfiles
+  tags:
+  - developement
+
+
+- name: Install Applications on this Laptop along with configurations
+  hosts: valentine
+  roles:
+  - applications/git
+  - applications/neovim
+  - applications/zsh
+  - applications/zim
+  tags:
+  - application
