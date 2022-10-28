@@ -13,7 +13,9 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "fedora29-silverblue"
+  config.vm.box = "fkrull/fedora37-silverblue"
+  config.vm.box_version = "37.0.20220831-1.4.1"
+
 
   if Vagrant.has_plugin?("vagrant-hostmanager")
      config.hostmanager.enabled = true
