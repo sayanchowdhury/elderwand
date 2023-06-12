@@ -1,6 +1,0 @@
----
-- name: Install the cron jobs
-  hosts: devbox
-
-  roles:
-  - system/cron

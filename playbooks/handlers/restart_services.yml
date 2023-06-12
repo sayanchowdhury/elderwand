@@ -1,5 +1,0 @@
-## Handlers for restarting services
-#
-
-- name: restart nginx
-  action: service name=nginx state=restarted

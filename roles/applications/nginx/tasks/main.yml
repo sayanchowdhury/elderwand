@@ -1,5 +1,0 @@
----
-- name: Install nginx package
-  dnf: "{{ nginx }}"
-  with_items:
-  - nginx

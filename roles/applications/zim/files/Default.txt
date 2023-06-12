@@ -1,2 +1,0 @@
-======= [% page.basename %] =======
-Created [[:Date[% strftime(":%Y:%m:%d") %]]]
